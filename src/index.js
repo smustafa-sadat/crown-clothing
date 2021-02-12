@@ -4,15 +4,19 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom'
 
-import store from './redux/store'
+import {store,persistor} from './redux/store';
+
 import {Provider} from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
       <BrowserRouter>
-        <App />
+        <PersistGate persistor = {persistor}>
+          <App/>
+        </PersistGate>
       </BrowserRouter>
     </React.StrictMode>
   </Provider>,
@@ -23,3 +27,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
